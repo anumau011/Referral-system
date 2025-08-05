@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
+import { API_URLS } from '../config/api';
 
 const UsersContainer = styled.div`
   max-width: 1200px;
@@ -210,7 +211,7 @@ export default function Users() {
   const fetchUsers = async () => {
     try {
       setLoading(true);
-      const response = await axios.get(`http://localhost:4000/api/users?page=${currentPage}&limit=50`);
+      const response = await axios.get(API_URLS.USERS_PAGINATED(currentPage, 50));
       setUsers(response.data.users);
       setPagination(response.data.pagination);
       setError('');

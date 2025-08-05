@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
+import { API_URLS } from './config/api';
 
 export default function Leaderboard() {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:4000/api/leaderboard')
+    fetch(API_URLS.LEADERBOARD)
       .then(res => res.json())
       .then(setData);
   }, []);

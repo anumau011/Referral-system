@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
+import { API_URLS } from '../config/api';
 
 const LoginContainer = styled.div`
   display: flex;
@@ -123,7 +124,7 @@ export default function Login({ onLogin }) {
     if (isSignup) {
       // Sign up new user
       try {
-        const response = await axios.post('http://localhost:4000/api/user', formData);
+        const response = await axios.post(API_URLS.USER, formData);
         setSuccess('Account created successfully!');
         setTimeout(() => onLogin(response.data), 1500);
       } catch (err) {
@@ -132,7 +133,7 @@ export default function Login({ onLogin }) {
     } else {
       // Login with dummy data or use name to find user
       try {
-        const response = await axios.get(`http://localhost:4000/api/user/${formData.name.toLowerCase().replace(/\s+/g, '')}2025`);
+        const response = await axios.get(API_URLS.USER_BY_CODE(formData.name.toLowerCase().replace(/\s+/g, '') + '2025'));
         onLogin(response.data);
       } catch (err) {
         // Use dummy data for login

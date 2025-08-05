@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
+import { API_URLS } from '../config/api';
 
 const DashboardContainer = styled.div`
   max-width: 1200px;
@@ -143,7 +144,7 @@ export default function Dashboard({ user }) {
     
     try {
       const response = await axios.put(
-        `http://localhost:4000/api/user/${currentUser.referralCode}/donate`,
+        API_URLS.USER_DONATE(currentUser.referralCode),
         { amount: parseInt(donationAmount) }
       );
       setCurrentUser(response.data);

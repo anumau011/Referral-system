@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
+import { API_URLS } from '../config/api';
 
 const LeaderboardContainer = styled.div`
   max-width: 800px;
@@ -131,7 +132,7 @@ export default function Leaderboard() {
   const fetchLeaderboard = async () => {
     try {
       setLoading(true);
-      const response = await axios.get('http://localhost:4000/api/leaderboard');
+      const response = await axios.get(API_URLS.LEADERBOARD);
       setData(response.data);
       setError('');
     } catch (err) {

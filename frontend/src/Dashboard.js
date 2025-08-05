@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
+import { API_URLS } from './config/api';
 
 export default function Dashboard({ userName, onLogout }) {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    fetch('http://localhost:4000/api/user')
+    fetch(API_URLS.USER)
       .then(res => res.json())
       .then(data => setUser(data));
   }, []);
